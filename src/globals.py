@@ -1,0 +1,28 @@
+
+WIDTH = 1500  # ширина игрового окна
+HEIGHT = 1000 # высота игрового окна
+FPS = 60
+cell_width = 50
+cell_height = 50
+field_size = 10
+black_color = (0, 0, 0)
+white_color = (255, 255, 255)
+padding = 20
+text_size = 30
+boats_size = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1]
+lettrs = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7, 'I': 8, 'J': 9}
+welcome_msg = "Добро пожаловать! Чтобы приступить к настройкам нажмите клавишу 'enter'"
+all_is_ready_msg ="Чтобы начать игру нажмите клавишу 'enter'"
+opponent_field_msg = "Поле противника:"
+our_field_msg = "Ваше поле:"
+get_trgt_msg = "{}, введите цель: "
+get_boat_msg = "{}, введите кораль размера {}"
+player_field_msg = "Поле игрока {}: "
+winner_name_msg = "Победил игрок {}!"
+ready_to_set_flds_msg = "Введите 'enter' чтобы начать игру"
+change_name_pl1_msg = "Введите цифру 1 чтобы изменить имя первого игрока"
+change_name_pl2_msg = "Введите цифру 2 чтобы изменить имя второго игрока"
+ready_next_step_msg = "{}, Нажмите 'enter' если готовы преступить к следующему ходу: "
+get_pl1_name = "Первый игрок, введите свое имя: "
+get_pl2_name = "Второй игрок, введите свое имя: "
+

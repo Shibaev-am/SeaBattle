@@ -11,6 +11,9 @@ class Boat:
     def get_coordinates(self, i):
         return self._coordinates[i]
 
+    def get_all_coordinates(self):
+        return self._coordinates
+
     def check_boat(self):
         self._coordinates.sort()
         if len(self._coordinates) != self._size:
@@ -28,3 +31,4 @@ class Boat:
             if not (diff_y == 0 and diff_x == 1):
                 f2 = False
         return f1 or f2
+        

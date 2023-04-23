@@ -30,6 +30,9 @@ class Cell:
         elif new_status == 'boat' or new_status == 'reserved':
             self._img = pygame.image.load('images/Boat.PNG').convert()
 
+    def set_fire_boat_img(self):
+        self._img = pygame.image.load('images/FireBoat.PNG').convert()
+
     def get_status(self):
         return self._status
 

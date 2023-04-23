@@ -94,11 +94,21 @@ class System:
                 is_now_first = not is_now_first
             elif rs == 'wound':
                 self._interface.print_result_attack("Есть пробитие!")
+                if is_now_first:
+                    self._player2.update_after_fire(shot.get_coordinates()[0],
+                                                    shot.get_coordinates()[1])
+                else:
+                    self._player1.update_after_fire(shot.get_coordinates()[0],
+                                                    shot.get_coordinates()[1])
             elif rs == 'doubling':
                 self._interface.print_result_attack("Туда уже был выстрел!")
             else:
                 if shot.get_attacker() == self._player1:
+                    self._player2.update_after_fire(shot.get_coordinates()[0],
+                                                    shot.get_coordinates()[1])
                     self._interface.end_game(self._player1, self._player2)
                 else:
+                    self._player1.update_after_fire(shot.get_coordinates()[0],
+                                                    shot.get_coordinates()[1])
                     self._interface.end_game(self._player2, self._player1)
                 break

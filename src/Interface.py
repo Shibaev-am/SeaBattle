@@ -73,8 +73,8 @@ class Interface:
             pygame.display.update()
             clock.tick(globals.FPS)
 
-    def get_boat(self, size, player):
-        msg = globals.get_boat_msg.format(player.get_name(), size)
+    def get_boat(self, size, player, text_msg):
+        msg = text_msg
         self.screen.fill(self.back_color)
         font = pygame.font.SysFont(
             'TimesNewRoman', globals.text_size, bold=False, italic=False)

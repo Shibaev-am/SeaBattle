@@ -35,23 +35,60 @@ class Player:
     def update_boats(self, sizes_of_boat):
         boats = []
         i = 0
+        is_good_prev = True
+        is_start = True
+        counts = [4, 3, 2, 1]
         while i < len(sizes_of_boat):
-            curr_boat = self._system.get_interface().get_boat(
-                sizes_of_boat[i], self)
+            curr_boat = 0
+            if is_start:
+                msg = globals.get_boat_msg.format(self._name, sizes_of_boat[i])
+                curr_boat = self._system.get_interface().get_boat(
+                    sizes_of_boat[i], self, msg)
+                is_start = False
+            elif is_good_prev:
+                temp = ""
+                if counts[sizes_of_boat[i] - 1] == 1:
+                    temp = "корабль"
+                else:
+                    temp = "корабля"
+                left = counts[sizes_of_boat[i] - 1]
+                msg = globals.prev_good_msg.format(self._name,
+                                                   sizes_of_boat[i],
+                                                   left,
+                                                   temp,
+                                                   sizes_of_boat[i])
+                curr_boat = self._system.get_interface().get_boat(
+                    sizes_of_boat[i], self, msg)
+            elif not is_good_prev:
+                msg = globals.prev_bad_msg.format(self._name, sizes_of_boat[i])
+                curr_boat = self._system.get_interface().get_boat(
+                    sizes_of_boat[i], self, msg)
+
             check = curr_boat.check_boat()
             if not check:
                 self.unreserved()
+                is_good_prev = False
                 pygame.time.delay(100)
             else:
                 check = self.set_boat_on_field(curr_boat)
                 if not check:
                     self.unreserved()
+                    is_good_prev = False
                     pygame.time.delay(100)
                 else:
+                    is_good_prev = True
+                    counts[sizes_of_boat[i] -
+                           1] = counts[sizes_of_boat[i] - 1] - 1
                     boats.append(curr_boat)
                     i += 1
         pygame.time.delay(100)
         self._boats = boats
+
+    def update_after_fire(self, x, y):
+        for ship in self._boats:
+            if [x, y] in ship.get_all_coordinates() and \
+                    not self._field.is_survive_boat(ship):
+                self._field.update_borders(ship)
 
     def get_cell_status(self, x, y):
         return self._field.get_cell_status(x, y)
